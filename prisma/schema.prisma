@@ -11,19 +11,97 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  login    String
-  password String
-  name     String
-  surname  String?
-  role     Role    @default(CLIENT)
+  id        String        @id @default(uuid())
+  email     String        @unique
+  firstName String
+  lastName  String
+  role      Role          @default(CLIENT)
+  avatar    AvatarImages?
+  companies Company[]
+  updatedAt DateTime      @default(now()) @updatedAt
+  createdAt DateTime      @default(now())
 
-  createdAt DateTime @default(now())
+  @@map("users")
+}
+
+model AvatarImages {
+  id        String   @id @default(uuid())
+  url       String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
   updatedAt DateTime @default(now()) @updatedAt
+  createdAt DateTime @default(now())
+
+  @@map("avatar_images")
+}
+
+model Company {
+  id             String          @id @default(uuid())
+  name           String
+  owners         User[]
+  description    String
+  slug           String
+  category       CompanyCategory @default(FOOD)
+  products       Product[]
+  landingLayout  Json
+  landingContent Json
+  images         CompanyImages[]
+  updatedAt      DateTime        @default(now()) @updatedAt
+  createdAt      DateTime        @default(now())
+
+  @@map("companies")
+}
+
+model CompanyImages {
+  id        String   @id @default(uuid())
+  url       String
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?
+  updatedAt DateTime @default(now()) @updatedAt
+  createdAt DateTime @default(now())
+
+  @@map("company_images")
+}
+
+model Product {
+  id           String          @id @default(uuid())
+  name         String
+  description  String
+  price        Float
+  sku          String?
+  category     ProductCategory @default(FOOD)
+  isBestSeller Boolean
+  images       ProductImages[]
+  stock        Int?
+  company      Company?        @relation(fields: [companyId], references: [id])
+  companyId    String?
+  updatedAt    DateTime        @default(now()) @updatedAt
+  createdAt    DateTime        @default(now())
+
+  @@map("products")
+}
+
+model ProductImages {
+  id        String   @id @default(uuid())
+  url       String
+  product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+  updatedAt DateTime @default(now()) @updatedAt
+  createdAt DateTime @default(now())
+
+  @@map("product_images")
 }
 
 enum Role {
   CLIENT
-  ADMIN
+  OWNER
   ROOT
+}
+
+enum ProductCategory {
+  FOOD
+}
+
+enum CompanyCategory {
+  FOOD
 }
