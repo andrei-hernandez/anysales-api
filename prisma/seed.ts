@@ -21,6 +21,7 @@ async function main(): Promise<void> {
             name: "Anysales",
             description: "Anysales description",
             slug: "anysales",
+            citySlug: "toluca",
             landingLayout: {},
             landingContent: {},
             products: {

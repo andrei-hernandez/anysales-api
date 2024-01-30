@@ -41,6 +41,7 @@ model Company {
   owners         User[]
   description    String
   slug           String
+  citySlug       String          @unique
   category       CompanyCategory @default(FOOD)
   products       Product[]
   landingLayout  Json
