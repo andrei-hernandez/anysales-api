@@ -28,6 +28,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.17",
     "@prisma/client": "5.5.2",
+    "express": "^4.18.2",
     "firebase-admin": "^12.0.0",
     "passport-firebase-jwt": "^1.2.1",
     "reflect-metadata": "^0.1.13",
