@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common"
+import { Company } from "./entities/company.entity"
 import { PrismaService } from "../prisma/prisma.service"
 import { CreateCompanyDto } from "./dto/create-company.dto"
 import { UpdateCompanyDto } from "./dto/update-company.dto"
@@ -6,17 +7,15 @@ import { UpdateCompanyDto } from "./dto/update-company.dto"
 @Injectable()
 export class CompaniesService {
   constructor(private prisma: PrismaService) {}
-
-  create(createCompanyDto: CreateCompanyDto) {
+  async create(createCompanyDto: CreateCompanyDto): Promise<Company> {
     return this.prisma.company.create({ data: createCompanyDto })
   }
 
-  findAll(citySlug: string) {
+  async findAll(citySlug: string): Promise<Company[]> {
     return this.prisma.company.findMany({ where: { citySlug } })
   }
 
-  findOne(id: string) {
-    console.info(id, "executing find one service")
+  async findOne(id: string): Promise<Company> {
     return this.prisma.company.findUnique({
       where: { id },
       include: {
@@ -26,32 +25,17 @@ export class CompaniesService {
     })
   }
 
-  update(id: string, updateCompanyDto: UpdateCompanyDto) {
-    return this.prisma.company.update({ where: { id }, data: updateCompanyDto })
+  async update(
+    id: string,
+    updateCompanyDto: UpdateCompanyDto
+  ): Promise<Company> {
+    return this.prisma.company.update({
+      where: { id },
+      data: updateCompanyDto
+    })
   }
 
-  remove(id: string) {
+  async remove(id: string): Promise<Company> {
     return this.prisma.company.delete({ where: { id } })
   }
-
-  findAllProductsOfCompany(id: string) {
-    return this.prisma.company.findUnique({ where: { id } })
-  }
 }
-
-/*
-findAllProductsOfStore(id: number) {
-  return this.prisma.store.findFirst({
-    where: { id },
-    include: {
-      products: {
-        include: {
-          categories: {
-            select: { category: { select: { name: true } } }
-          }
-        }
-      }
-    }
-  })
-}
-*/

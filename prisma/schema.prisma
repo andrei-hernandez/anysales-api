@@ -100,9 +100,11 @@ enum Role {
 }
 
 enum ProductCategory {
-  FOOD
+  FOOD    @map("FOOD")
+  SERVICE @map("SERVICE")
 }
 
 enum CompanyCategory {
-  FOOD
+  FOOD    @map("FOOD")
+  SERVICE @map("SERVICE")
 }

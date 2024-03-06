@@ -3,7 +3,7 @@ import { CompaniesService } from "./companies.service"
 import { PrismaService } from "../prisma/prisma.service"
 import { CreateCompanyDto } from "./dto/create-company.dto"
 import { UpdateCompanyDto } from "./dto/update-company.dto"
-import { mockedCompaniesData, mockedCompaniesService } from "../../test/mocks"
+import { mockedCompaniesData, mockedPrismaService } from "../../test/mocks/"
 import { CompanyCategory } from "../types"
 
 describe("CompaniesService", () => {
@@ -13,10 +13,9 @@ describe("CompaniesService", () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CompaniesService,
-        PrismaService,
         {
-          provide: CompaniesService,
-          useValue: mockedCompaniesService()
+          provide: PrismaService,
+          useValue: mockedPrismaService()
         }
       ]
     }).compile()

@@ -12,7 +12,7 @@ import {
 } from "@nestjs/common"
 import { CompaniesService } from "./companies.service"
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger"
-import { Company } from "./entities/company.entities"
+import { Company } from "./entities/company.entity"
 import { CreateCompanyDto } from "./dto/create-company.dto"
 import { UpdateCompanyDto } from "./dto/update-company.dto"
 
@@ -62,11 +62,3 @@ export class CompaniesController {
     return this.companiesService.remove(id)
   }
 }
-
-/*
-@Get(':id/products')
-@ApiOkResponse({ type: Product, isArray: true })
-findAllProductsOfStore(@Param('id') id: string) {
-  return this.storesService.findAllProductsOfStore(+id);
-}
-*/
