@@ -2,8 +2,13 @@ import { Test, TestingModule } from "@nestjs/testing"
 import { ProductsService } from "./products.service"
 import { PrismaService } from "../prisma/prisma.service"
 import { CreateProductDto } from "./dto/ create-product.dto"
-import { mockedProductsData, mockedPrismaService } from "../../test/mocks/"
+import {
+  mockedProductsData,
+  mockedPrismaService,
+  mockedDate
+} from "../../test/mocks/"
 import { UpdateProductDto } from "./dto/update-product.dto"
+import { ProductCategory } from "../types"
 
 describe("ProductsService", () => {
   let service: ProductsService
@@ -60,8 +65,18 @@ describe("ProductsService", () => {
   })
 
   it("should remove a product", async () => {
-    expect(await service.remove("1")).toEqual(
-      mockedProductsData.filter(product => product.id !== "1")
-    )
+    expect(await service.remove("1")).toEqual({
+      id: "1",
+      name: "Product 1",
+      description: "Product 1 description",
+      price: 10,
+      stock: 100,
+      sku: "product-1",
+      category: ProductCategory.SERVICE,
+      isBestSeller: true,
+      companyId: "1",
+      createdAt: new Date(mockedDate),
+      updatedAt: new Date(mockedDate)
+    })
   })
 })

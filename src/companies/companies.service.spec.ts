@@ -3,7 +3,11 @@ import { CompaniesService } from "./companies.service"
 import { PrismaService } from "../prisma/prisma.service"
 import { CreateCompanyDto } from "./dto/create-company.dto"
 import { UpdateCompanyDto } from "./dto/update-company.dto"
-import { mockedCompaniesData, mockedPrismaService } from "../../test/mocks/"
+import {
+  mockedCompaniesData,
+  mockedDate,
+  mockedPrismaService
+} from "../../test/mocks/"
 import { CompanyCategory } from "../types"
 
 describe("CompaniesService", () => {
@@ -67,8 +71,17 @@ describe("CompaniesService", () => {
   })
 
   it("should remove a company", async () => {
-    expect(await service.remove("1")).toEqual(
-      mockedCompaniesData.filter(company => company.id !== "1")
-    )
+    expect(await service.remove("1")).toEqual({
+      id: "1",
+      name: "Company 1",
+      slug: "company-1",
+      citySlug: "city-1",
+      description: "Company 1 description",
+      landingContent: {},
+      landingLayout: {},
+      category: CompanyCategory.FOOD,
+      createdAt: new Date(mockedDate),
+      updatedAt: new Date(mockedDate)
+    })
   })
 })

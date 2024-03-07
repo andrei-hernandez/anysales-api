@@ -1,6 +1,7 @@
 import { Company } from "../../src/companies/entities/company.entity"
-import { CompanyCategory, ProductCategory } from "../../src/types"
+import { CompanyCategory, ProductCategory, UserRole } from "../../src/types"
 import { Product } from "../../src/products/entities/products.entity"
+import { User } from "../../src/users/entities/users.entity"
 
 export const mockedDate = "2024-01-27T04:29:14.207Z"
 export const mockedCompaniesData: Array<Company> = [
@@ -78,6 +79,36 @@ export const mockedProductsData: Array<Product> = [
     category: ProductCategory.FOOD,
     isBestSeller: true,
     companyId: "2",
+    createdAt: new Date(mockedDate),
+    updatedAt: new Date(mockedDate)
+  }
+]
+
+export const mockedUsersData: Array<User> = [
+  {
+    id: "1",
+    email: "fake@faker.com",
+    firstName: "Fake",
+    lastName: "Faker",
+    role: UserRole.ROOT,
+    createdAt: new Date(mockedDate),
+    updatedAt: new Date(mockedDate)
+  },
+  {
+    id: "2",
+    email: "fake2@faker.com",
+    firstName: "Fake2",
+    lastName: "Faker2",
+    role: UserRole.CLIENT,
+    createdAt: new Date(mockedDate),
+    updatedAt: new Date(mockedDate)
+  },
+  {
+    id: "3",
+    email: "fake3@faker.com",
+    firstName: "Fake3",
+    lastName: "Faker3",
+    role: UserRole.OWNER,
     createdAt: new Date(mockedDate),
     updatedAt: new Date(mockedDate)
   }

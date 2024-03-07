@@ -67,9 +67,9 @@ main()
     console.error(e)
     process.exit(1)
   })
-  .finally(() => {
+  .finally(async (): Promise<void> => {
     const prismaDisconnect = async (): Promise<void> =>
       await prisma.$disconnect()
     // close Prisma Client at the end
-    prismaDisconnect()
+    return prismaDisconnect()
   })

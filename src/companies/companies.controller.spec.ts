@@ -106,31 +106,17 @@ describe("CompaniesController", () => {
   })
 
   it("should delete a company", async () => {
-    expect(await controller.remove("1")).toEqual([
-      {
-        id: "2",
-        name: "Company 2",
-        slug: "company-2",
-        citySlug: "city-1",
-        description: "Company 2 description",
-        landingContent: {},
-        landingLayout: {},
-        category: CompanyCategory.FOOD,
-        createdAt: new Date(mockedDate),
-        updatedAt: new Date(mockedDate)
-      },
-      {
-        id: "3",
-        name: "Company 3",
-        slug: "company-3",
-        citySlug: "city-3",
-        description: "Company 3 description",
-        landingContent: {},
-        landingLayout: {},
-        category: CompanyCategory.FOOD,
-        createdAt: new Date(mockedDate),
-        updatedAt: new Date(mockedDate)
-      }
-    ])
+    expect(await controller.remove("1")).toEqual({
+      id: "1",
+      name: "Company 1",
+      slug: "company-1",
+      citySlug: "city-1",
+      description: "Company 1 description",
+      landingContent: {},
+      landingLayout: {},
+      category: "FOOD",
+      updatedAt: new Date(mockedDate),
+      createdAt: new Date(mockedDate)
+    })
   })
 })

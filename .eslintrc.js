@@ -3,7 +3,7 @@ module.exports = {
   parserOptions: {
     project: "tsconfig.json",
     tsconfigRootDir: __dirname,
-    sourceType: "module",
+    sourceType: "module"
   },
   plugins: ["@typescript-eslint/eslint-plugin", "unused-imports"],
   extends: [
@@ -13,12 +13,12 @@ module.exports = {
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript",
+    "plugin:import/typescript"
   ],
   root: true,
   env: {
     node: true,
-    jest: true,
+    jest: true
   },
   ignorePatterns: [".eslintrc.js", "seed.ts"],
   rules: {
@@ -29,8 +29,8 @@ module.exports = {
     "import/newline-after-import": [
       "error",
       {
-        count: 1,
-      },
+        count: 1
+      }
     ],
     "@typescript-eslint/semi": ["error", "never"],
     "eol-last": ["error", "always"],
@@ -39,15 +39,15 @@ module.exports = {
     "no-console": [
       "error",
       {
-        allow: ["warn", "error", "info"],
-      },
+        allow: ["warn", "error", "info"]
+      }
     ],
     "arrow-spacing": [
       "error",
       {
         before: true,
-        after: true,
-      },
+        after: true
+      }
     ],
     "arrow-parens": ["warn", "as-needed"],
     "space-in-parens": ["error", "never"],
@@ -67,6 +67,6 @@ module.exports = {
     "max-depth": ["error", 3],
     quotes: ["warn", "double"],
     semi: "off",
-    "space-infix-ops": "error",
-  },
+    "space-infix-ops": "error"
+  }
 }
