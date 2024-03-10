@@ -1,6 +1,7 @@
 import { User as UserEntity } from "@prisma/client"
 import { ApiProperty } from "@nestjs/swagger"
 import { UserRole } from "../../types"
+import { AvatarImage } from "./avatar-images.entity"
 
 export class User implements UserEntity {
   constructor(partial: Partial<UserEntity>) {
@@ -20,6 +21,9 @@ export class User implements UserEntity {
 
   @ApiProperty()
   role: UserRole
+
+  @ApiProperty()
+  avatar: AvatarImage
 
   @ApiProperty()
   updatedAt: Date

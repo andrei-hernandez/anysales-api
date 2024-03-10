@@ -2,7 +2,8 @@ import { Test, TestingModule } from "@nestjs/testing"
 import { CompaniesController } from "./companies.controller"
 import { CompaniesService } from "./companies.service"
 import { mockedCompaniesService, mockedDate } from "../../test/mocks"
-import { CompanyCategory } from "../types"
+import { CompanyCategory, UserRole } from "../types"
+import { CreateCompanyDto } from "./dto/create-company.dto"
 
 describe("CompaniesController", () => {
   let controller: CompaniesController
@@ -26,14 +27,16 @@ describe("CompaniesController", () => {
   })
 
   it("should create a company", async () => {
-    const dto = {
+    const dto: CreateCompanyDto = {
       name: "Company 4",
       slug: "company-4",
       citySlug: "city-1",
       category: CompanyCategory.FOOD,
       description: "Company 4 description",
       landingContent: {},
-      landingLayout: {}
+      landingLayout: {},
+      owners: [{ id: "1" }],
+      images: [{ url: "https://fake.com/image.jpg", name: "image.jpg" }]
     }
     expect(await controller.create(dto)).toEqual(dto)
   })
@@ -47,9 +50,28 @@ describe("CompaniesController", () => {
       description: "Company 1 description",
       landingContent: {},
       landingLayout: {},
-      category: "FOOD",
+      category: CompanyCategory.FOOD,
+      createdAt: new Date(mockedDate),
       updatedAt: new Date(mockedDate),
-      createdAt: new Date(mockedDate)
+      owners: [
+        {
+          id: "1",
+          email: "fake@faker.com",
+          firstName: "Fake",
+          lastName: "Faker",
+          role: UserRole.ROOT,
+          createdAt: new Date(mockedDate),
+          updatedAt: new Date(mockedDate),
+          avatar: {
+            id: "1",
+            url: "https://fake.com/avatar.jpg",
+            name: "fake-avatar.jpg",
+            userId: "1",
+            createdAt: new Date(mockedDate),
+            updatedAt: new Date(mockedDate)
+          }
+        }
+      ]
     })
   })
 
@@ -63,9 +85,28 @@ describe("CompaniesController", () => {
         description: "Company 1 description",
         landingContent: {},
         landingLayout: {},
-        category: "FOOD",
+        category: CompanyCategory.FOOD,
+        createdAt: new Date(mockedDate),
         updatedAt: new Date(mockedDate),
-        createdAt: new Date(mockedDate)
+        owners: [
+          {
+            id: "1",
+            email: "fake@faker.com",
+            firstName: "Fake",
+            lastName: "Faker",
+            role: UserRole.ROOT,
+            createdAt: new Date(mockedDate),
+            updatedAt: new Date(mockedDate),
+            avatar: {
+              id: "1",
+              url: "https://fake.com/avatar.jpg",
+              name: "fake-avatar.jpg",
+              userId: "1",
+              createdAt: new Date(mockedDate),
+              updatedAt: new Date(mockedDate)
+            }
+          }
+        ]
       },
       {
         id: "2",
@@ -75,9 +116,28 @@ describe("CompaniesController", () => {
         description: "Company 2 description",
         landingContent: {},
         landingLayout: {},
-        category: "FOOD",
+        category: CompanyCategory.FOOD,
+        createdAt: new Date(mockedDate),
         updatedAt: new Date(mockedDate),
-        createdAt: new Date(mockedDate)
+        owners: [
+          {
+            id: "1",
+            email: "fake@faker.com",
+            firstName: "Fake",
+            lastName: "Faker",
+            role: UserRole.ROOT,
+            createdAt: new Date(mockedDate),
+            updatedAt: new Date(mockedDate),
+            avatar: {
+              id: "1",
+              url: "https://fake.com/avatar.jpg",
+              name: "fake-avatar.jpg",
+              userId: "1",
+              createdAt: new Date(mockedDate),
+              updatedAt: new Date(mockedDate)
+            }
+          }
+        ]
       }
     ])
   })
@@ -100,6 +160,25 @@ describe("CompaniesController", () => {
       landingContent: {},
       landingLayout: {},
       category: "FOOD",
+      owners: [
+        {
+          id: "1",
+          email: "fake@faker.com",
+          firstName: "Fake",
+          lastName: "Faker",
+          role: UserRole.ROOT,
+          createdAt: new Date(mockedDate),
+          updatedAt: new Date(mockedDate),
+          avatar: {
+            id: "1",
+            url: "https://fake.com/avatar.jpg",
+            name: "fake-avatar.jpg",
+            userId: "1",
+            createdAt: new Date(mockedDate),
+            updatedAt: new Date(mockedDate)
+          }
+        }
+      ],
       updatedAt: new Date(mockedDate),
       createdAt: new Date(mockedDate)
     })
@@ -115,6 +194,25 @@ describe("CompaniesController", () => {
       landingContent: {},
       landingLayout: {},
       category: "FOOD",
+      owners: [
+        {
+          id: "1",
+          email: "fake@faker.com",
+          firstName: "Fake",
+          lastName: "Faker",
+          role: UserRole.ROOT,
+          createdAt: new Date(mockedDate),
+          updatedAt: new Date(mockedDate),
+          avatar: {
+            id: "1",
+            url: "https://fake.com/avatar.jpg",
+            name: "fake-avatar.jpg",
+            userId: "1",
+            createdAt: new Date(mockedDate),
+            updatedAt: new Date(mockedDate)
+          }
+        }
+      ],
       updatedAt: new Date(mockedDate),
       createdAt: new Date(mockedDate)
     })

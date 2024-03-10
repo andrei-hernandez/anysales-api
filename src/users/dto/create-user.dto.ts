@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { UserRole } from "../../types"
+import { CreateAvatarImageDto } from "./create-avatar-image.dto"
 
 export class CreateUserDto {
   @ApiProperty()
@@ -13,4 +14,7 @@ export class CreateUserDto {
 
   @ApiProperty()
   role: UserRole
+
+  @ApiProperty()
+  avatar: CreateAvatarImageDto
 }

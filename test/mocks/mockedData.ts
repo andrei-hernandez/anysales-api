@@ -15,7 +15,26 @@ export const mockedCompaniesData: Array<Company> = [
     landingLayout: {},
     category: CompanyCategory.FOOD,
     createdAt: new Date(mockedDate),
-    updatedAt: new Date(mockedDate)
+    updatedAt: new Date(mockedDate),
+    owners: [
+      {
+        id: "1",
+        email: "fake@faker.com",
+        firstName: "Fake",
+        lastName: "Faker",
+        role: UserRole.ROOT,
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate),
+        avatar: {
+          id: "1",
+          url: "https://fake.com/avatar.jpg",
+          name: "fake-avatar.jpg",
+          userId: "1",
+          createdAt: new Date(mockedDate),
+          updatedAt: new Date(mockedDate)
+        }
+      }
+    ]
   },
   {
     id: "2",
@@ -27,7 +46,26 @@ export const mockedCompaniesData: Array<Company> = [
     landingLayout: {},
     category: CompanyCategory.FOOD,
     createdAt: new Date(mockedDate),
-    updatedAt: new Date(mockedDate)
+    updatedAt: new Date(mockedDate),
+    owners: [
+      {
+        id: "1",
+        email: "fake@faker.com",
+        firstName: "Fake",
+        lastName: "Faker",
+        role: UserRole.ROOT,
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate),
+        avatar: {
+          id: "1",
+          url: "https://fake.com/avatar.jpg",
+          name: "fake-avatar.jpg",
+          userId: "1",
+          createdAt: new Date(mockedDate),
+          updatedAt: new Date(mockedDate)
+        }
+      }
+    ]
   },
   {
     id: "3",
@@ -39,7 +77,26 @@ export const mockedCompaniesData: Array<Company> = [
     landingLayout: {},
     category: CompanyCategory.FOOD,
     createdAt: new Date(mockedDate),
-    updatedAt: new Date(mockedDate)
+    updatedAt: new Date(mockedDate),
+    owners: [
+      {
+        id: "1",
+        email: "fake@faker.com",
+        firstName: "Fake",
+        lastName: "Faker",
+        role: UserRole.ROOT,
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate),
+        avatar: {
+          id: "1",
+          url: "https://fake.com/avatar.jpg",
+          name: "fake-avatar.jpg",
+          userId: "1",
+          createdAt: new Date(mockedDate),
+          updatedAt: new Date(mockedDate)
+        }
+      }
+    ]
   }
 ]
 export const mockedProductsData: Array<Product> = [
@@ -92,7 +149,15 @@ export const mockedUsersData: Array<User> = [
     lastName: "Faker",
     role: UserRole.ROOT,
     createdAt: new Date(mockedDate),
-    updatedAt: new Date(mockedDate)
+    updatedAt: new Date(mockedDate),
+    avatar: {
+      id: "1",
+      url: "https://fake.com/avatar.jpg",
+      name: "fake-avatar.jpg",
+      userId: "1",
+      createdAt: new Date(mockedDate),
+      updatedAt: new Date(mockedDate)
+    }
   },
   {
     id: "2",
@@ -101,7 +166,15 @@ export const mockedUsersData: Array<User> = [
     lastName: "Faker2",
     role: UserRole.CLIENT,
     createdAt: new Date(mockedDate),
-    updatedAt: new Date(mockedDate)
+    updatedAt: new Date(mockedDate),
+    avatar: {
+      id: "1",
+      url: "https://fake.com/avatar.jpg",
+      name: "fake-avatar.jpg",
+      userId: "1",
+      createdAt: new Date(mockedDate),
+      updatedAt: new Date(mockedDate)
+    }
   },
   {
     id: "3",
@@ -110,6 +183,14 @@ export const mockedUsersData: Array<User> = [
     lastName: "Faker3",
     role: UserRole.OWNER,
     createdAt: new Date(mockedDate),
-    updatedAt: new Date(mockedDate)
+    updatedAt: new Date(mockedDate),
+    avatar: {
+      id: "1",
+      url: "https://fake.com/avatar.jpg",
+      name: "fake-avatar.jpg",
+      userId: "1",
+      createdAt: new Date(mockedDate),
+      updatedAt: new Date(mockedDate)
+    }
   }
 ]

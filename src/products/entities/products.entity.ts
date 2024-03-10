@@ -1,6 +1,7 @@
 import { Product as ProductEntity } from "@prisma/client"
 import { ApiProperty } from "@nestjs/swagger"
 import { ProductCategory } from "../../types"
+import { ProductImage } from "./product-images.entity"
 
 export class Product implements ProductEntity {
   constructor(partial: Partial<ProductEntity>) {
@@ -33,6 +34,9 @@ export class Product implements ProductEntity {
 
   @ApiProperty()
   companyId: string
+
+  @ApiProperty()
+  images?: Array<ProductImage>
 
   @ApiProperty()
   updatedAt: Date

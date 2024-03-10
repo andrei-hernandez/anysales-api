@@ -12,6 +12,7 @@ async function main(): Promise<void> {
       role: "ROOT",
       avatar: {
         create: {
+          name: "Andrei avatar",
           url: "https://thumbs.dreamstime.com/b/gray-man-avatar-design-concept-ai-supported-81256396.jpg"
         }
       },
@@ -34,6 +35,7 @@ async function main(): Promise<void> {
                   images: {
                     create: [
                       {
+                        name: "Anysales product image",
                         url: "https://patijinich.com/es/wp-content/uploads/sites/3/2017/07/207-chilaquiles-verdes.jpg"
                       }
                     ]
@@ -47,6 +49,7 @@ async function main(): Promise<void> {
                   images: {
                     create: [
                       {
+                        name: "Anysales product image",
                         url: "https://patijinich.com/es/wp-content/uploads/sites/3/2017/07/207-chilaquiles-verdes.jpg"
                       }
                     ]

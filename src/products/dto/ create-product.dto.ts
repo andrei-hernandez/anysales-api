@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { ProductCategory } from "../../types"
+import { CreateProductImageDto } from "./create-product-image.dto"
 
 export class CreateProductDto {
   @ApiProperty()
@@ -19,6 +20,9 @@ export class CreateProductDto {
 
   @ApiProperty()
   isBestSeller: boolean
+
+  @ApiProperty()
+  images: Array<CreateProductImageDto>
 
   @ApiProperty()
   stock: number

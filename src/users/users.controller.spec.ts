@@ -33,7 +33,11 @@ describe("UsersController", () => {
       email: "fake-test@faker.com",
       firstName: "Fake test",
       lastName: "Faker test",
-      role: "CLIENT"
+      role: "CLIENT",
+      avatar: {
+        url: "https://fake.com/avatar.jpg",
+        name: "avatar.jpg"
+      }
     }
     expect(await controller.create(dto)).toEqual(dto)
   })
@@ -45,6 +49,14 @@ describe("UsersController", () => {
       firstName: "Fake",
       lastName: "Faker",
       role: UserRole.ROOT,
+      avatar: {
+        id: "1",
+        url: "https://fake.com/avatar.jpg",
+        name: "fake-avatar.jpg",
+        userId: "1",
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate)
+      },
       createdAt: new Date(mockedDate),
       updatedAt: new Date(mockedDate)
     })
@@ -61,6 +73,14 @@ describe("UsersController", () => {
       firstName: "Fake test updated",
       lastName: "Faker",
       role: UserRole.ROOT,
+      avatar: {
+        id: "1",
+        url: "https://fake.com/avatar.jpg",
+        name: "fake-avatar.jpg",
+        userId: "1",
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate)
+      },
       createdAt: new Date(mockedDate),
       updatedAt: new Date(mockedDate)
     })
@@ -73,6 +93,14 @@ describe("UsersController", () => {
       firstName: "Fake",
       lastName: "Faker",
       role: UserRole.ROOT,
+      avatar: {
+        id: "1",
+        url: "https://fake.com/avatar.jpg",
+        name: "fake-avatar.jpg",
+        userId: "1",
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate)
+      },
       createdAt: new Date(mockedDate),
       updatedAt: new Date(mockedDate)
     })

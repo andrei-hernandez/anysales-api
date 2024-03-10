@@ -32,7 +32,11 @@ describe("UsersService", () => {
       email: "fake-test@faker.com",
       firstName: "Fake test",
       lastName: "Faker test",
-      role: "CLIENT"
+      role: "CLIENT",
+      avatar: {
+        url: "https://fake.com/avatar.jpg",
+        name: "avatar.jpg"
+      }
     }
     expect(await service.create(dto)).toEqual(dto)
   })
@@ -45,7 +49,15 @@ describe("UsersService", () => {
       lastName: "Faker",
       role: UserRole.ROOT,
       createdAt: new Date(mockedDate),
-      updatedAt: new Date(mockedDate)
+      updatedAt: new Date(mockedDate),
+      avatar: {
+        id: "1",
+        url: "https://fake.com/avatar.jpg",
+        name: "fake-avatar.jpg",
+        userId: "1",
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate)
+      }
     })
   })
 
@@ -59,6 +71,14 @@ describe("UsersService", () => {
       firstName: "Fake test updated",
       lastName: "Faker",
       role: UserRole.ROOT,
+      avatar: {
+        id: "1",
+        url: "https://fake.com/avatar.jpg",
+        name: "fake-avatar.jpg",
+        userId: "1",
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate)
+      },
       createdAt: new Date(mockedDate),
       updatedAt: new Date(mockedDate)
     })
@@ -72,7 +92,15 @@ describe("UsersService", () => {
       lastName: "Faker",
       role: UserRole.ROOT,
       createdAt: new Date(mockedDate),
-      updatedAt: new Date(mockedDate)
+      updatedAt: new Date(mockedDate),
+      avatar: {
+        id: "1",
+        url: "https://fake.com/avatar.jpg",
+        name: "fake-avatar.jpg",
+        userId: "1",
+        createdAt: new Date(mockedDate),
+        updatedAt: new Date(mockedDate)
+      }
     })
   })
 })

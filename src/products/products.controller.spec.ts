@@ -38,7 +38,13 @@ describe("ProductsController", () => {
       sku: "product-4",
       category: "SERVICE",
       price: 10,
-      isBestSeller: true
+      isBestSeller: true,
+      images: [
+        {
+          url: "https://fake.com/image.jpg",
+          name: "image.jpg"
+        }
+      ]
     }
     expect(await controller.create(dto)).toEqual(dto)
   })

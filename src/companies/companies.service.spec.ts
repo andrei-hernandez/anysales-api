@@ -8,7 +8,7 @@ import {
   mockedDate,
   mockedPrismaService
 } from "../../test/mocks/"
-import { CompanyCategory } from "../types"
+import { CompanyCategory, UserRole } from "../types"
 
 describe("CompaniesService", () => {
   let service: CompaniesService
@@ -39,7 +39,18 @@ describe("CompaniesService", () => {
       description: "Company 4 description",
       landingContent: {},
       landingLayout: {},
-      category: CompanyCategory.FOOD
+      category: CompanyCategory.FOOD,
+      images: [
+        {
+          url: "https://fake.com/image.jpg",
+          name: "image.jpg"
+        }
+      ],
+      owners: [
+        {
+          id: "1"
+        }
+      ]
     }
     expect(await service.create(dto)).toEqual(dto)
   })
@@ -62,7 +73,18 @@ describe("CompaniesService", () => {
       description: "Company 4 description",
       landingContent: {},
       landingLayout: {},
-      category: CompanyCategory.FOOD
+      category: CompanyCategory.FOOD,
+      images: [
+        {
+          url: "https://fake.com/image.jpg",
+          name: "image.jpg"
+        }
+      ],
+      owners: [
+        {
+          id: "1"
+        }
+      ]
     }
     expect(await service.update("1", dto)).toEqual({
       ...mockedCompaniesData[0],
@@ -81,7 +103,26 @@ describe("CompaniesService", () => {
       landingLayout: {},
       category: CompanyCategory.FOOD,
       createdAt: new Date(mockedDate),
-      updatedAt: new Date(mockedDate)
+      updatedAt: new Date(mockedDate),
+      owners: [
+        {
+          id: "1",
+          email: "fake@faker.com",
+          firstName: "Fake",
+          lastName: "Faker",
+          role: UserRole.ROOT,
+          createdAt: new Date(mockedDate),
+          updatedAt: new Date(mockedDate),
+          avatar: {
+            id: "1",
+            url: "https://fake.com/avatar.jpg",
+            name: "fake-avatar.jpg",
+            userId: "1",
+            createdAt: new Date(mockedDate),
+            updatedAt: new Date(mockedDate)
+          }
+        }
+      ]
     })
   })
 })

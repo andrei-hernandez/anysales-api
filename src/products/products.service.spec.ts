@@ -39,6 +39,12 @@ describe("ProductsService", () => {
       stock: 100,
       sku: "product-4",
       category: "FOOD",
+      images: [
+        {
+          url: "https://fake.com/image.jpg",
+          name: "image.jpg"
+        }
+      ],
       isBestSeller: true
     }
     expect(await service.create(dto)).toEqual(dto)
@@ -56,7 +62,13 @@ describe("ProductsService", () => {
       stock: 100,
       sku: "product-4",
       category: "FOOD",
-      isBestSeller: true
+      isBestSeller: true,
+      images: [
+        {
+          url: "https://fake.com/image.jpg",
+          name: "image.jpg"
+        }
+      ]
     }
     expect(await service.update("1", dto)).toEqual({
       ...mockedProductsData[0],

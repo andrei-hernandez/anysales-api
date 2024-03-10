@@ -12,6 +12,8 @@ import { Company } from "../../src/companies/entities/company.entity"
 import { User } from "../../src/users/entities/users.entity"
 import { UpdateUserDto } from "../../src/users/dto/update-user.dto"
 import { CreateUserDto } from "../../src/users/dto/create-user.dto"
+import { CreateProductImageDto } from "../../src/products/dto/create-product-image.dto"
+import { UpdateCompanyImageDto } from "../../src/companies/dto/update-company-image.dto"
 
 interface whereArgs<T, G> {
   where: T
@@ -20,7 +22,9 @@ interface whereArgs<T, G> {
 
 export const mockedPrismaService = () => ({
   product: {
-    create: jest.fn(({ data: CreateProductDto }) => ({ ...CreateProductDto })),
+    create: jest.fn(({ data: CreateProductDto }) => {
+      return { ...CreateProductDto, images: CreateProductDto.images.create }
+    }),
     findMany: jest.fn(
       ({ where: { companyId } }: whereArgs<Product, CreateProductDto>) => {
         return mockedProductsData.filter(
@@ -29,9 +33,17 @@ export const mockedPrismaService = () => ({
       }
     ),
     update: jest.fn(
-      ({ where: { id }, data }: whereArgs<Product, UpdateProductDto>) => {
+      ({
+        where: { id },
+        data
+      }: whereArgs<
+        Product,
+        Omit<CreateProductDto, "images"> & {
+          images: { create: CreateProductImageDto[] }
+        }
+      >) => {
         const product = mockedProductsData.find(product => product.id === id)
-        return { ...product, ...data }
+        return { ...product, ...data, images: data.images.create }
       }
     ),
     findUnique: jest.fn(
@@ -48,7 +60,13 @@ export const mockedPrismaService = () => ({
     )
   },
   company: {
-    create: jest.fn(({ data: CreateCompanyDto }) => ({ ...CreateCompanyDto })),
+    create: jest.fn(({ data: CreateCompanyDto }) => {
+      return {
+        ...CreateCompanyDto,
+        images: CreateCompanyDto.images.create,
+        owners: CreateCompanyDto.owners.connect
+      }
+    }),
     findMany: jest.fn(
       ({ where: { citySlug } }: whereArgs<Company, CreateCompanyDto>) => {
         return mockedCompaniesData.filter(
@@ -57,9 +75,23 @@ export const mockedPrismaService = () => ({
       }
     ),
     update: jest.fn(
-      ({ where: { id }, data }: whereArgs<Company, UpdateCompanyDto>) => {
+      ({
+        where: { id },
+        data
+      }: whereArgs<
+        Company,
+        Omit<UpdateCompanyDto, "images" | "owners"> & {
+          images: { create: UpdateCompanyImageDto[] }
+          owners: { connect: { id: string }[] }
+        }
+      >) => {
         const company = mockedCompaniesData.find(company => company.id === id)
-        return { ...company, ...data }
+        return {
+          ...company,
+          ...data,
+          images: data.images.create,
+          owners: data.owners.connect
+        }
       }
     ),
     findUnique: jest.fn(
@@ -76,11 +108,19 @@ export const mockedPrismaService = () => ({
     )
   },
   user: {
-    create: jest.fn(({ data: CreateUserDto }) => ({ ...CreateUserDto })),
+    create: jest.fn(({ data: CreateUserDto }) => {
+      return {
+        ...CreateUserDto,
+        avatar: CreateUserDto.avatar.create
+      }
+    }),
     update: jest.fn(
-      ({ where: { id }, data }: whereArgs<User, UpdateUserDto>) => {
+      ({
+        where: { id },
+        data: { avatar, ...data }
+      }: whereArgs<User, UpdateUserDto>) => {
         const user = mockedUsersData.find(user => user.id === id)
-        return { ...user, ...data }
+        return { ...user, ...data, avatar: { ...avatar, ...user.avatar } }
       }
     ),
     findUnique: jest.fn(({ where: { id } }: whereArgs<User, CreateUserDto>) => {
@@ -95,7 +135,13 @@ export const mockedPrismaService = () => ({
 })
 
 export const mockedCompaniesService = () => ({
-  create: jest.fn((dto: CreateCompanyDto) => ({ ...dto })),
+  create: jest.fn(data => {
+    return {
+      ...data,
+      images: data.images,
+      owners: data.owners
+    }
+  }),
   findAll: jest.fn((citySlug: string) => {
     return mockedCompaniesData.filter(company => company.citySlug === citySlug)
   }),
